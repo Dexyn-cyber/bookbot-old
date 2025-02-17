@@ -1,0 +1,120 @@
+Git Clone
+Let's clone down the GitHub repo onto your machine and open it in your editor.
+
+By creating a project on GitHub first and cloning it down, the remote connection between your local project and GitHub will be configured automatically. If you start your project on your local machine and push it up later, there are a few more steps involved. That's why I prefer git clone to git init + git remote add origin.
+
+Workspace Structure
+If you're following my workspace setup, do the following (otherwise skip to "cloning bookbot"):
+
+Navigate to your workspace root
+Make sure you're in your workspace directory. If you're not, you can run "change directory" in your terminal:
+
+cd ~/workspace
+
+Create and navigate into a directory called github.com. This is where all GitHub projects will live:
+mkdir github.com
+cd github.com
+
+Create and navigate into a directory that will hold all the projects owned by your GitHub username. Replace USERNAME with your GitHub username:
+mkdir USERNAME
+cd USERNAME
+
+All of your personal projects on GitHub will now live here, at ~/workspace/github.com/username. I like to structure my workspace this way because it makes it easy to find and manage all my projects, and it means I'll never have conflicting project names (because it mirrors the remote URL structure).
+
+Cloning Bookbot
+Clone your bookbot repo by running this command inside your USERNAME directory and replacing USERNAME with your GitHub username:
+
+git clone https://github.com/USERNAME/bookbot
+
+If all goes well, you'll now have a new bookbot directory in your current working directory. You can check by running the "list" command:
+
+ls
+
+If you see bookbot, you cloned your remote repo. Navigate into this directory.
+_______________________________________________
+
+Installing Python
+In previous courses, we've been writing our python code in the browser, now we're finally going to install python on our local machines.
+
+For Windows (WSL 2) / Linux Users
+If you're on Linux (or Windows WSL 2), you may already have python installed. You can verify this by running:
+
+python3 --version
+
+If that worked, you can skip ahead! If not we'll use the default package manager, apt, to download python.
+
+Run this command to install python3:
+sudo apt update
+sudo apt install -y python3
+
+Make sure to read the installation logs in case there's some step you're missing!
+
+When you're done, close your terminal (trash icon in the top-right of the terminal) and, if you are using VS code, re-open it with:
+ctrl + `
+__________________________________________________
+Running Python
+Let's run some Python code! Create a new file called main.py. You can use the VS Code file explorer or run the command:
+
+touch main.py
+Copy icon
+Open the file in the file explorer and paste in some simple "hello world" code. Don't forget to save your code after you write it!
+
+print("hello world")
+
+Run your program:
+
+python3 main.py
+
+If your code printed "hello world" to the console, pat yourself on the back! You've got a professional Python development environment configured that will serve you well for years to come.
+
+_____________________________________________________
+
+Bookbot - Read File
+Now that you've got your machine all configured, let's build "bookbot"! Bookbot is a simple command-line program that reads text from a file and generates a report about the text.
+
+Download "Frankenstein"
+The "Frankenstein" book by Mary Shelley is in the public domain, so we can use it for our project.
+
+You can find the full text here.
+
+Create a directory in your bookbot project called books. Right-click the text on the webpage and choose Select All, then copy and paste it into a text editor. Save it as frankenstein.txt in the books directory.
+Use a .gitignore File
+We don't want to save the entire book in our Git repository. Generally speaking, Git is for code, not for data.
+
+Create a .gitignore file in the root of your project and add this text to it:
+books/
+Copy icon
+You should see the filename turn dark gray in your VS Code file explorer. Now, whenever you run git add . from the root of your project, all the files in the books directory will be automatically ignored!
+
+Opening a File
+You can use a with block to open a file:
+with open(path_to_file) as f:
+    # ...
+Copy icon
+The with block ensures that the file is properly closed when the block is exited.
+
+The path_to_file is relative to wherever you're running the program from. If you're running the program from the root of your project, use books/frankenstein.txt. Remember, the path to the file is a string, so it needs to be in quotes.
+
+Read the Contents
+Once you have an open file, read the contents into a string within the with block:
+with open(path_to_file) as f:
+    file_contents = f.read()
+Copy icon
+Use a main function to wrap the logic and call main() at the bottom of your file to execute your program.
+
+Change main.py so that instead of printing "hello world", it reads the contents of the "frankenstein.txt" and prints it all to the console.
+
+
+Count Words
+Add a new function to your script that takes the text from the book as a string, and returns the number of words in the string.
+
+Add a print() statement, then run your code to make sure it's doing what you expect. The Frankenstein book should contain 77986 words!
+
+
+______________________________________________________
+______________________________________________________
+
+Commands used:
+
+git clone https://github.com/USERNAME/bookbot
+python3 main.py
